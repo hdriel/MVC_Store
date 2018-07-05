@@ -1,4 +1,4 @@
-# MVC product Store 
+# MVC Shop Products 
 
 ### C# , MCV, EntityFramework, SQL Server (SSMS2012)
 
