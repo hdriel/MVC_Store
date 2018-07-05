@@ -1,0 +1,95 @@
+﻿@model MVC_Store.Models.VMProductAndProducts
+
+@{
+    ViewBag.Title = "DeleteProduct";
+}
+
+<style>
+    .divSearchForm2 {
+        border: 2px solid black;
+        border-radius: 5px;
+        Font-weight: bold;
+        display: inline-block;
+        padding: 20px 40px 20px 40px;
+        margin: 20px 20px 20px 20px;
+    }
+</style>
+
+@Html.Partial("~/Views/NavigationBar.cshtml", Model.user)
+
+<h2>Delete a Product</h2>
+
+<div class="divSearchForm2">
+
+    @using (Html.BeginForm("searchDelete", "Manager"))
+    {
+        <table>
+            <tr>
+                <td>Search by id product : </td>
+                <td><input id="IdProduct" name="IdProduct" type="text" placeholder="Id product" style="width:100%" /></td>
+            </tr>
+            <tr>
+                <td>Search by Category : </td>
+                <td><input id="Category" name="Category" type="text" placeholder="Category" style="width:100%" /></td>
+            </tr>
+            <tr>
+                <td>Search by animal :</td>
+                <td><input id="Animal" name="Animal" type="text" placeholder="Animal" style="width:100%" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input id="search" name="search" type="submit" class="btn" value="Search" style="width:100%" /></td>
+            </tr>
+        </table>
+    }
+</div>
+<div class="divSearchForm2">
+    @using (Html.BeginForm("SubmitDelete", "Manager", FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>Id product : </td>
+                <td>@Html.TextBoxFor(model => model.product.IdProduct, new { placeholder = "Id product", @type = "text", disabled = "disabled" })@Html.HiddenFor(x => x.product.IdProduct)</td>
+            </tr>
+
+            <tr>
+                <td>Category : </td>
+                <td>@Html.TextBoxFor(model => model.product.Category , new { placeholder = "Category", @type = "text", disabled = "disabled" })@Html.HiddenFor(x => x.product.Category)</td>
+            </tr>
+            <tr>
+                <td>title : </td>
+                <td>@Html.TextBoxFor(model => model.product.Title, new { placeholder = "Title", @type = "text", disabled = "disabled" })@Html.HiddenFor(x => x.product.Title)</td>
+            </tr>
+            <tr>
+                <td>Suitable for animal :</td>
+                <td>@Html.TextBoxFor(model => model.product.ForKindAnimal, new { placeholder = "Animal", @type = "text", disabled = "disabled" })@Html.HiddenFor(x => x.product.ForKindAnimal)</td>
+            </tr>
+            <tr>
+                <td>Discription :</td>
+                <td>@Html.TextBoxFor(model => model.product.Discription, new { placeholder = "Discription", @type = "text", disabled = "disabled" })@Html.HiddenFor(x => x.product.Discription)</td>
+            </tr>
+            <tr>
+                <td>Price :</td>
+                <td>@Html.TextBoxFor(model => model.product.Price, new { placeholder = "Price", @type = "number", @step = "0.1", disabled = "disabled" })@Html.HiddenFor(x => x.product.Price)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input id="Submit" name="Submit" type="submit" class="btn" value="Delete" style="width:100%" /></td>
+            </tr>
+        </table>
+        
+    }
+</div>
+
+
+@{
+    // create table of the result of search and add on click them to add the selected div 
+}
+
+
+
+
+@{
+
+   // WebGrid obj = new WebGrid(Model.products);
+   // @obj.GetHtml();
+}
+

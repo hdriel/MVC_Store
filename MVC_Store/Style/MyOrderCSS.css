@@ -1,0 +1,20 @@
+﻿
+       
+        #tableProduct {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .thProduct, .tdProduct {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .thProduct {
+            background-color: #996600;
+            color: white;
+        }

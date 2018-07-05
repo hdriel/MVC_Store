@@ -1,0 +1,61 @@
+﻿@model MVC_Store.Models.User
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+@Html.Partial("~/Views/NavigationBar.cshtml", Model)
+
+<h1>Your Profile </h1>
+
+<div>
+    <table>
+        <tr>
+            <td>First Name :</td>
+            <td>@Model.FirstName</td>
+        </tr>
+        <tr>
+            <td>Last Name :</td>
+            <td>@Model.LastName</td>
+        </tr>
+        <tr>
+            <td>Email :</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Password :</td>
+            <td>@Model.Password</td>
+        </tr>
+        <tr>
+            <td>Phone Number :</td>
+            <td>@Model.Phone</td>
+        </tr>
+        <tr>
+            <td>Address :</td>
+            <td>@Model.Address</td>
+        </tr>
+        <tr>
+            <td>sex: </td>
+            <td>@Model.sex</td>
+        </tr>
+        <tr>
+            <td>Birth Date: </td>
+            <td>@Model.BirthDate</td>
+        </tr>
+        <tr>
+            <td>age: </td>
+            <td>@Model.age</td>
+        </tr>
+
+    </table>
+
+</div>
+
+<div>
+    <button class="btn btn-primary"  type="button" onclick="location.href='@Url.Action("Edit", "User",Model)'">Edit Profile</button>
+</div>
+<br />
+<div>
+    <button class="btn btn-success"  type="button" onclick="location.href='@Url.Action("Home", "Store", Model)'">Go back to Store</button>
+</div>
+<br />

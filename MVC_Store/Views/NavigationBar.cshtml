@@ -1,0 +1,142 @@
+﻿@model MVC_Store.Models.User
+@using MVC_Store.Models
+
+<style>
+   
+    body {
+
+  width: 100%;
+
+  max-width: 960px;
+
+  margin: 0 auto; }
+
+nav {
+
+  width: 100%;
+
+  margin: 20px 0; }
+
+nav ul {
+
+  list-style: none;
+
+  overflow: hidden; }
+
+nav ul li {
+
+  float: left;
+
+  width: 20%; }
+
+nav ul li a {
+
+  text-align: center;
+
+  padding: 8px 0;
+
+  display: block;
+
+  width: 100%;
+
+  background: #cdeb8e; /* Old browsers */
+
+  background: -moz-linear-gradient(top, #cdeb8e 0%, #b0ca34 100%); /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cdeb8e), color-stop(100%,#b0ca34)); /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #cdeb8e 0%,#b0ca34 100%); /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #cdeb8e 0%,#b0ca34 100%); /* Opera 11.10+ */
+
+  background: linear-gradient(to bottom, #cdeb8e 0%,#b0ca34 100%); /* W3C, IE10+ */
+
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cdeb8e', endColorstr='#b0ca34',GradientType=0 ); /* IE6-9 */
+
+  endColorstr='#b0ca34',GradientType=0 ); /* IE6-9 */
+
+}
+
+nav ul li a,
+
+nav ul li a:focus,
+
+nav ul li a:visited,
+
+nav ul li a:hover,
+
+nav ul li a:active {
+
+  color: #000;
+
+  text-decoration: none; }
+
+nav ul li a:hover,
+
+nav ul li a:active {
+
+  background: #b0ca34; /* Old browsers */
+
+  background: -moz-linear-gradient(top, #b0ca34 0%, #96c40d 100%); /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b0ca34), color-stop(100%,#96c40d)); /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #b0ca34 0%,#96c40d 100%); /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #b0ca34 0%,#96c40d 100%); /* Opera 11.10+ */
+
+  background: linear-gradient(to bottom, #b0ca34 0%,#96c40d 100%); /* W3C, IE10+ */
+
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0ca34', endColorstr='#96c40d',GradientType=0 ); /* IE6-9 */
+
+}
+
+nav ul li:first-child a {
+
+  border-top-left-radius: 8px;
+
+  border-bottom-left-radius: 8px; }
+
+nav ul li:last-child a {
+
+  border-top-right-radius: 8px;
+
+  border-bottom-right-radius: 8px; }
+</style>
+
+<nav>
+    <ul>
+
+        @if (Model.Email == null)
+        {
+            <li><a href="#">Hello guest</a></li>
+        }
+        else
+        {
+            <li><a href=@Url.Action("Profile", "User", Model)>Hi @Model.FirstName</a></li>
+        }
+
+        <li><a href=@Url.Action("Home", "Store", Model)>Home</a></li>
+        
+        @if (Model.Email == null)
+        {
+            <li><a href=@Url.Action("SignUp", "User")>SignUp </a></li>
+            <li><a href=@Url.Action("LogIn", "User")>LogIn </a></li>
+        }
+        else
+        {
+
+            if (Model.isAdmin == 1)
+            {
+                <li><a href=@Url.Action("Actions", "Manager", Model)>Manage Products</a></li>
+            }
+            else
+            {
+                <li><a href=@Url.Action("myOrdersAction", "Store")>My Orders</a></li>
+            }
+
+            <li><a href=@Url.Action("LogOut", "User")>Log-out</a></li>
+        }
+       
+    </ul>
+</nav>

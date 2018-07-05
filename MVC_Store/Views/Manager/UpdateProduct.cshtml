@@ -1,0 +1,96 @@
+﻿@model MVC_Store.Models.VMProductAndProducts
+@using MVC_Store.Models
+
+@{
+    ViewBag.Title = "UpdateProduct";
+}
+<style>
+    .divSearchForm {
+        border: 2px solid black;
+        border-radius: 5px;
+        Font-weight: bold;
+        display: inline-block;
+        padding: 20px 40px 20px 40px;
+        margin: 20px 20px 20px 20px;
+    }
+</style>
+
+@Html.Partial("~/Views/NavigationBar.cshtml", Model.user)
+
+<h2>UpdateProduct</h2>
+<div class="divSearchForm">
+    @using (Html.BeginForm("SearchUpdate", "Manager"))
+    {
+        <table>
+            <tr>
+                <td>Search by id product : </td>
+                <td><input id="IdProduct" name="IdProduct" type="text" placeholder="Id product" style="width:100%" /></td>
+            </tr>
+            <tr>
+                <td>Search by Category : </td>
+                <td><input id="Category" name="Category" type="text" placeholder="Category" style="width:100%" /></td>
+            </tr>
+            <tr>
+                <td>Search by animal :</td>
+                <td><input id="Animal" name="Animal" type="text" placeholder="Animal" style="width:100%" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input id="search" name="search" type="submit" class="btn" value="Search" style="width:100%" /></td>
+            </tr>
+        </table>
+    }
+</div>
+<div class="divSearchForm">
+    @using (Html.BeginForm("SubmitUpdate", "Manager", FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>Id product : </td>
+                <td>@Html.TextBoxFor(model => model.product.IdProduct , new { placeholder = "ID", @type = "text" ,disabled = "disabled" })@Html.HiddenFor(x => x.product.IdProduct)</td>
+            </tr>
+            <tr>
+                <td>Category : </td>
+                <td>@Html.TextBoxFor(model => model.product.Category , new { placeholder = "Category", @type = "text" })<span style="color:red">@Html.ValidationMessageFor(x => x.product.Category)</span></td>
+            </tr>
+            <tr>
+                <td>title : </td>
+                <td>@Html.TextBoxFor(model => model.product.Title , new { placeholder = "Title", @type = "text" })<span style="color:red">@Html.ValidationMessageFor(x => x.product.Title)</span></td>
+            </tr>
+            <tr>
+                <td>Suitable for animal :</td>
+                <td>@Html.TextBoxFor(model => model.product.ForKindAnimal , new { placeholder = "Animal", @type = "text" })<span style="color:red">@Html.ValidationMessageFor(x => x.product.ForKindAnimal)</span></td>
+            </tr>
+            <tr>
+                <td>Discription :</td>
+                <td>@Html.TextBoxFor(model => model.product.Discription , new { placeholder = "Discription", @type = "text" })<span style="color:red">@Html.ValidationMessageFor(x => x.product.Discription)</span></td>
+            </tr>
+            <tr>
+                <td>Price :</td>
+                <td>@Html.TextBoxFor(model => model.product.Price, new { placeholder = "Price", @type = "number", @step = "0.1" })<span style="color:red">@Html.ValidationMessageFor(x => x.product.Price)</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input id="Submit" name="Submit" type="submit" class="btn" value="Update" style="width:100%" /></td>
+            </tr>
+        </table>
+    }
+</div>
+
+
+@{
+    WebGrid obj = new WebGrid(Model.products);
+}
+
+@if (Model.products != null)
+{
+    @obj.GetHtml();
+}
+else
+{
+    <p>There hasn't detail yet! </p>
+}
+
+@{
+    // create the table of products from search and add onclick them to add this to the selected Product
+}
+
+

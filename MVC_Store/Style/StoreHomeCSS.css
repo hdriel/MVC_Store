@@ -1,0 +1,143 @@
+﻿ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+            li a, .dropbtn {
+                display: inline-block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+                li a:hover, .dropdown:hover .dropbtn {
+                    background-color: red;
+                }
+
+            li.dropdown {
+                display: inline-block;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+
+        #inputSearch {
+            display: inline-block;
+        }
+
+        #tableProduct {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .thProduct_Loged, .tdProduct, .thProduct_Register {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .thProduct_Loged {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .thProduct_Register {
+            background-color: #ff9933;
+            color: white;
+        }
+
+
+        input[type=text] {
+            width: 150px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: white;
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 6px 10px 6px 10px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+            input[type=text]:focus {
+                width: 70em;
+                max-width: 100%;
+            }
+
+        .w-85, .w-15 {
+            box-sizing: border-box;
+            float: left;
+        }
+        .w-85 {
+            width: 85%;
+        }
+         .w-15 {
+            width: 15%;
+        }
+        .clr {
+            clear: both;
+        }
+
+        .chat-input-box {
+            background-color: #EFEFEF;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .chat-input-text, .chat-submit-button {
+            width: 100%;
+        }
+
+        .button-cont {
+            padding-left: 5px;
+        }
+
+        #btnSearch{
+            
+            border: none;
+            color: white;
+            padding: 5px 11px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }

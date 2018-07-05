@@ -1,0 +1,86 @@
+﻿@model MVC_Store.Models.VMUserAndProducrs
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>myOrdersAction</title>
+    <link href="~/Style/MyOrderCSS.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.js"></script>
+
+    <script>
+        var app = angular.module("myOrders", []);
+        app.controller("myOrderController", function ($scope, $http) {
+
+            $scope.Product = {
+                "IdProduct": "0",
+                "Category": "",
+                "ForKindAnimal": "",
+                "Title": "",
+                "Discription": "",
+                "Price": ""
+            };
+
+            $scope.Products = {};
+
+            $scope.loading = "...";
+
+            $scope.Delete = function (p) {
+                $scope.loading = "cancel order, please wait...";
+                $http({ method: "POST", data: p, url: "DeleteProductFromUserByJson" })
+                    .success(function (data, status, headers, config) {
+                        $scope.Products = data;
+                        $scope.loading = "You order is canceled!";
+                    });
+            };
+
+            $scope.Load = function () {
+                $scope.loading = "Loading data, please wait...";
+                $http({ method: "GET", url: "GetMyProductsOrdersByJson" })
+                    .success(function (data, status, headers, config) {
+                        $scope.Products = data;
+                        $scope.loading = "";
+                    });
+            };
+            $scope.Load();
+        });
+    </script>
+</head>
+<body>
+
+    @Html.Partial("~/Views/NavigationBar.cshtml", Model.user)
+
+    <h2>Display My Orders</h2>
+
+    <div ng-app="myOrders">
+        <div ng-controller="myOrderController">
+            <div><p style="color:red">{{loading}}</p></div>
+            <table id="tableProduct">
+                <tr>
+                    <th class="thProduct" align="center">Product Id</th>
+                    <th class="thProduct" align="left">Category</th>
+                    <th class="thProduct" align="left">Animal</th>
+                    <th class="thProduct" align="left">Title</th>
+                    <th class="thProduct" align="left">Discription</th>
+                    <th class="thProduct" align="right">Price</th>
+                    <th class="thProduct" align="center">Option</th>
+                </tr>
+
+                <tr ng-repeat="pro in Products">
+                    <td class="tdProduct">{{pro.IdProduct}}</td>
+                    <td class="tdProduct">{{pro.Category}}</td>
+                    <td class="tdProduct">{{pro.ForKindAnimal}}</td>
+                    <td class="tdProduct">{{pro.Title}}</td>
+                    <td class="tdProduct">{{pro.Discription}}</td>
+                    <td class="tdProduct">{{pro.Price}}</td>
+                    <td class="tdProduct">
+                        <p style="color:#996600" ng-click="Delete(pro)">Cancel</p>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

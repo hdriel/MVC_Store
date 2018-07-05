@@ -1,0 +1,105 @@
+﻿@model MVC_Store.Models.VMUserAndProducrs
+@using MVC_Store.Models;
+
+@{
+    ViewBag.Title = "Actions";
+}
+
+<style>
+   .divAction{
+       border: 2px solid black;
+       border-radius: 12px;
+       Background-color: lightgray;
+       Font-weight: bold;
+       display: inline-block;
+       padding: 20px 40px 20px 40px;
+       margin: 20px 20px 20px 20px;
+   }
+</style>
+
+@if (Model.user != null)
+{
+    @Html.Partial("~/Views/NavigationBar.cshtml", Model.user)
+}
+
+<h2>Actions</h2>
+
+<div class="divAction">
+    <a href=@Url.Action("AddNewProduct", "Manager")>Add product</a>
+</div>
+
+<div class="divAction">
+    <a href=@Url.Action("UpdateProduct", "Manager")>update product</a>
+</div>
+
+<div class="divAction">
+    <a href=@Url.Action("DeleteProduct", "Manager")>Delete product</a>
+</div>
+
+<div class="divAction">
+    <a href=@Url.Action("ShowUsers", "Manager")>Show all users</a>
+</div>
+
+
+@{
+/*
+        WebGrid obj = new WebGrid(Model.products);
+        @obj.GetHtml();
+*/
+}
+
+
+
+<style>
+    #tableProduct {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .thProduct, .tdProduct {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .thProduct {
+        background-color: #9966ff;
+        color: white;
+    }
+</style>
+
+<table id="tableProduct">
+    <tr>
+        <th class="thProduct" align="center">Product Id</th>
+        <th class="thProduct" align="left">Category</th>
+        <th class="thProduct" align="left">Animal</th>
+        <th class="thProduct" align="left">Title</th>
+        <th class="thProduct" align="left">Discription</td>
+        <th class="thProduct" align="right">Price</th>
+        <th class="thProduct" align="center">Option</th>
+    </tr>
+    @foreach (Product p in Model.products)
+    {
+        <tr>
+            <td class="tdProduct" >@p.IdProduct</td>
+            <td class="tdProduct" >@p.Category</td>
+            <td class="tdProduct" >@p.ForKindAnimal</td>
+            <td class="tdProduct" >@p.Title</td>
+            <td class="tdProduct" >@p.Discription</td>
+            <td class="tdProduct" >@p.Price</td>
+            <td class="tdProduct" >@Html.ActionLink("Edit", "UpdateProduct_byActionLink", "Manager", p , null)  |   
+                                   @Html.ActionLink("Delete", "DeleteProduct_byActionLink", "Manager", p , null)</td>
+        </tr>
+    }
+</table>
+
+
+
+
+
+
+
+

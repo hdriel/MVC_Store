@@ -1,0 +1,223 @@
+﻿@model MVC_Store.Models.VMUserAndProducrs
+
+@using MVC_Store.Models;
+
+@{
+    ViewBag.Title = "Home";
+    string name = @Model.user.FirstName;
+    Boolean logined = true;
+    int isadmin = @Model.user.isAdmin;
+    if (name == null)
+        logined = false;
+
+}
+
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Style/StoreHomeCSS.css" rel="stylesheet" />
+
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/ProductsInHome.js"></script>
+  
+    </head>
+
+
+    <body>
+        <div>
+            <ul class="w3-navbar w3-black">
+                @if (logined)
+                {
+                    <li><a href="#">hi @Model.user.FirstName</a></li>
+                    <li><a href=@Url.Action("Profile", "User", Model.user)>Profile</a></li>
+                    <li><a href=@Url.Action("LogOut", "User")>Log out</a></li>
+
+                }
+                else
+                {
+                    <li><a href="#">Hello guest</a></li>
+                    <li><a href=@Url.Action("SignUp", "User")>SignUp </a></li>
+                    <li><a href=@Url.Action("LogIn", "User")>LogIn </a></li>
+                }
+
+                <li><a href="javascript:void(0)" onclick="w3_open()">Category <i class="fa fa-caret-down"></i></a></li>
+
+                <li style="float:right"><a href=@Url.Action("About", "Store", Model.user)>About</a></li>
+                @if (isadmin == 1)
+                {
+                    <li style="float:right"><a href=@Url.Action("Actions", "Manager", Model.user)>Manage Products</a></li>
+                }
+                else
+                {
+                    if (logined)
+                    {
+                        <li style="float:right"><a href=@Url.Action("myOrdersAction", "Store")>My Orders</a></li>
+                    }
+
+                }
+
+
+            </ul>
+
+            <nav class="w3-dropnav w3-card-2" style="display:none" id="Category">
+
+                <div class="w3-container">
+                    <span onclick="w3_close()" class="w3-closebtn w3-xlarge" title="Close Menu">&times;</span>
+                </div>
+
+                <div class="w3-row-padding w3-padding-bottom">
+                    <div class="w3-third">
+                        <h3>Category</h3>
+                        <a href="#">Food</a>
+                        <a href="#">Toy</a>
+                        <a href="#">Equipment</a>
+                    </div>
+                    <div class="w3-third">
+                        <h3>Animal</h3>
+                        <a href="#">Cat</a>
+                        <a href="#">Dog</a>
+                        <a href="#">Parrot</a>
+                    </div>
+                </div>
+                <br>
+            </nav>
+
+
+            @*@Html.Partial("~/Views/NavigationBar.cshtml", Model.user)*@
+
+
+            <div class="w3-container">
+                <h2>Here you can find gread prodects for your animal like: food, game, cloths etc..</h2>
+            </div>
+
+            <div ng-app="MyProducts">
+                <div ng-controller="Products_Searching">
+                    <form id="frmSearch" >
+                        <div class="chat-input-box">
+                            <div class="w-85">
+                                <input name="textSearch" id="textSearch" type="text" class="chat-input-text" placeholder="Search.." ng-model="textSearch" value={{textSearch}}>
+                            </div>
+                            <div class="w-15 button-cont">
+                                @if (logined)
+                                {
+                                    <input style="background-color:#4CAF50;" id="btnSearch" type="button" value="search" class="chat-submit-button" ng-click="Search()">
+                                }
+                                else
+                                {
+                                    <input style="background-color:#ff9933;" id="btnSearch" type="button" value="search" class="chat-submit-button" ng-click="Search()">
+                                    
+                                }
+                                
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                    </form>
+                    
+                    <hr />
+                    
+                    <div><p style="color:red">{{loading}}</p></div>
+                    <table id="tableProduct">
+                        <tr>
+                            @if (logined)
+                            {
+                                <th class="thProduct_Loged" align="center">Product Id</th>
+                                <th class="thProduct_Loged" align="left">Category</th>
+                                <th class="thProduct_Loged" align="left">Animal</th>
+                                <th class="thProduct_Loged" align="left">Title</th>
+                                <th class="thProduct_Loged" align="left">Discription</th>
+                                <th class="thProduct_Loged" align="right">Price</th>
+                                <th class="thProduct_Loged" align="center">Option</th>
+                            }
+                            else
+                            {
+                                <th class="thProduct_Register" align="center">Product Id</th>
+                                <th class="thProduct_Register" align="left">Category</th>
+                                <th class="thProduct_Register" align="left">Animal</th>
+                                <th class="thProduct_Register" align="left">Title</th>
+                                <th class="thProduct_Register" align="left">Discription</th>
+                                <th class="thProduct_Register" align="right">Price</th>
+                                <th class="thProduct_Register" align="center">Option</th>
+                            }
+
+                        </tr>
+                        
+                         <tr ng-repeat="pro in Products">
+                            <td class="tdProduct">{{pro.IdProduct}}</td>
+                            <td class="tdProduct">{{pro.Category}}</td>
+                            <td class="tdProduct">{{pro.ForKindAnimal}}</td>
+                            <td class="tdProduct">{{pro.Title}}</td>
+                            <td class="tdProduct">{{pro.Discription}}</td>
+                            <td class="tdProduct">{{pro.Price}}</td>
+                            @if (logined)
+                            {
+                                if (Model.user.isAdmin == 1)
+                                {
+                                    <td class="tdProduct">
+                                        <p style="color:#4CAF50" ng-click="Delete(pro)">Delete</p>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="tdProduct">
+                                        <p style="color:#4CAF50" ng-click="Buy(pro)">Buy</p>
+                                    </td>
+                                }
+                            }
+                            else
+                            {
+                                <td class="tdProduct">
+                                    <p style="color:#ff9933">@Html.ActionLink("Register", "SignUp", "User")</p>
+                                </td>
+                            }
+                        </tr>
+                                         
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        
+        <script>
+            var x = document.getElementById("Category");
+            function w3_open() {
+                if (x.className.indexOf("w3-show") == -1) {
+                    x.className += " w3-show";
+                } else {
+                    x.className = x.className.replace(" w3-show", "");
+                }
+            }
+            function w3_close() {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        </script>
+        <script>
+            /* When the user clicks on the button,
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropbtn')) {
+
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
+        </script>
+</body>
+</html>

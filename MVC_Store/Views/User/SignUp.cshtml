@@ -1,0 +1,58 @@
+﻿@model MVC_Store.Models.User
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@Html.Partial("~/Views/NavigationBar.cshtml", Model)
+
+<h1>Sign Up</h1>
+
+<h3>Already have a user account? <a href=@Url.Action("LogIn", "User") "><span>Log In</span></a></h3>
+<div>
+        @using (Html.BeginForm("SubmitSignUp", "User", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>First Name :</td>
+                    <td>@Html.TextBoxFor(model => model.FirstName, new { placeholder = "First Name", @type = "text" })<span style="color:red">@Html.ValidationMessageFor(x => x.FirstName)</span></td>
+                </tr>
+                <tr>
+                    <td>Last Name :</td>
+                    <td>@Html.TextBoxFor(model => model.LastName, new { placeholder = "Last Name", @type = "text" })<span style="color:red">@Html.ValidationMessageFor(x => x.LastName)</span></td>
+                </tr>
+                <tr>
+                    <td>Email :</td>
+                    <td>@Html.TextBoxFor(model => model.Email, new { placeholder = "Email", @type = "email" })<span style="color:red">@Html.ValidationMessageFor(x => x.Email)</span></td>
+                </tr>
+                <tr>
+                    <td>Password :</td>
+                    <td>@Html.TextBoxFor(model => model.Password, new { placeholder = "Password", @type = "password" }) <span style="color:red">@Html.ValidationMessageFor(x => x.Password)</span></td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>Repeat Password :</td>
+                    <td>@Html.TextBoxFor(model => model.RepeatPassword, new { placeholder = "Repeat Password", @type = "password" }) <span style="color:red">@Html.ValidationMessageFor(x => x.RepeatPassword)</span></td>
+                </tr>
+                <tr>
+                    <td>Phone Number :</td>
+                    <td>@Html.TextBoxFor(model => model.Phone, new { placeholder = "Phone", @type = "tel" }) <span style="color:red">@Html.ValidationMessageFor(x => x.Phone)</span></td>
+                </tr>
+                <tr>
+                    <td>Address :</td>
+                    <td>@Html.TextBoxFor(model => model.Address, new { placeholder = "Address", @type = "text" })<span style="color:red">@Html.ValidationMessageFor(x => x.Address)</span></td>
+                </tr>
+                <tr>
+                    <td>Birth Date: </td>
+                    <td>@Html.TextBoxFor(model => model.BirthDate, new { placeholder = "Birth Date", @type = "date" })<span style="color:red">@Html.ValidationMessageFor(x => x.BirthDate)</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input id="Submit" name="Submit" type="submit" class="btn" value="Sign up" style="width:100%" /></td>
+                </tr>
+            </table>
+        }
+</div>

@@ -1,0 +1,34 @@
+﻿@model MVC_Store.Models.User
+
+@{
+    ViewBag.Title = "LogIn";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@Html.Partial("~/Views/NavigationBar.cshtml", Model)
+
+<h2 style="display: inline-block;">LogIn  </h2> <h5 style="display: inline-block;">(or <a href=@Url.Action("SignUp", "User")> Register to site </a>)</h5>
+
+<div>
+    @using (Html.BeginForm("SubmitLogIn", "User", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>Email :</td>
+                <td>@Html.TextBoxFor(model => model.Email, new { placeholder = "Email", @type = "email" })<span style="color:red">@Html.ValidationMessageFor(x => x.Email)</span></td>
+            </tr>
+            <tr>
+                <td>Password :</td>
+                <td>@Html.TextBoxFor(model => model.Password, new { placeholder = "Password", @type = "password" }) <span style="color:red">@Html.ValidationMessageFor(x => x.Password)</span></td>
+            </tr>
+           
+            <tr>
+                <td colspan="2"><input id="Submit" name="Submit" type="submit" class="btn" value="Log In" style="width:100%" /></td>
+            </tr>
+        </table>
+
+    }
+</div>

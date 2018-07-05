@@ -1,0 +1,157 @@
+﻿@model MVC_Store.Models.VMUserAndUsers
+@using MVC_Store.Models;
+
+@{
+    ViewBag.Title = "Users";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+@Html.Partial("~/Views/NavigationBar.cshtml", Model.user)
+
+<h1> <p> <u><strong>Display the users</strong></u></p> </h1>
+
+<style>
+    #tableProduct {
+        margin-top: 50px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .thProduct, .tdProduct {
+        text-align: left;
+        padding: 8px;
+        width: 150px;
+        tab-size: 150;
+    }
+
+    input {
+        width: 130px;
+        tab-size: 130;
+    }
+
+    tr:nth-child(even) {
+        background-color: #BCC9E5;
+    }
+
+    .thProduct {
+        background-color: #072044;
+        color: white;
+    }
+</style>
+
+@{
+/*
+<form id="formEdit">
+    <table id="tableProduct">
+
+        <tr>
+            <th class="thProduct" align="left">Email</th>
+            <th class="thProduct" align="left">FirstName</th>
+            <th class="thProduct" align="left">LastName</th>
+            <th class="thProduct" align="left">sex</th>
+            <th class="thProduct" align="left">age</td>
+            <th class="thProduct" align="right">Phone</th>
+            <th class="thProduct" align="right">BirthDate</th>
+            <th class="thProduct" align="center">Option</th>
+        </tr>
+
+        @foreach (User s in Model.users)
+        {
+            <tr id="detailDisplay">
+                <td class="tdProduct">@s.Email</td>
+                <td class="tdProduct">@s.FirstName</td>
+                <td class="tdProduct">@s.LastName</td>
+                <td class="tdProduct">@s.sex</td>
+                <td class="tdProduct">@s.age</td>
+                <td class="tdProduct">@s.Phone</td>
+                <td class="tdProduct">@s.BirthDate.ToShortDateString()</td>
+                @if (s.isAdmin != 1)
+                {
+                    <td class="tdProduct">
+                        <div><p class="editRow" style="color:dodgerblue; display: inline-block" onclick="EditData()">Edit</p></div> | @Html.ActionLink("Delete", "DeleteUser_byActionLink", "Manager", s, null)
+                    </td>
+                }
+                else
+                {
+                    <td class="tdProduct">
+                        <div><p class="editRow" style="color:dodgerblue" onclick="EditData()">Edit</p></div>
+                    </td>
+                }
+
+            </tr>
+            <tr id="detailEditable">
+                <td class="tdProduct"><div><input id="edit_email" type="email" placeholder="@s.Email" disabled="disabled" /></div></td>
+                <td class="tdProduct"><div><input id="edit_firstname" type="text" placeholder="@s.FirstName" /></div></td>
+                <td class="tdProduct"><div><input id="edit_lastname" type="text" placeholder="@s.LastName" /></div></td>
+                <td class="tdProduct"><div><input id="edit_sex" type="text" placeholder="@s.sex" /></div></td>
+                <td class="tdProduct"><div><input id="edit_age" type="number" placeholder="@s.age" /></div></td>
+                <td class="tdProduct"><div><input id="edit_phone" type="text" placeholder="@s.Phone" /></div></td>
+                <td class="tdProduct"><div><input id="edit_birthdate" type="date" value="@s.BirthDate.Year-@s.BirthDate.Month-@s.BirthDate.Day" /></div></td>
+                <td class="tdProduct"><div id="saveRow"><p id="saveRow" style="color:dodgerblue" onclick="SaveData()">Save</p></div></td>
+                @*@Html.ActionLink("Save", "UpdateUser_byActionLink", "Manager", s, null)*@
+            </tr>
+        }
+    </table>
+</form>
+
+
+
+
+
+<script>
+
+    function EditData() {
+        alert("edit Data now!");
+        $("#detailDisplay").hide();
+        $("#detailEditable").show();
+    }
+
+    function HideData(){
+        alert("only show Data now!");
+        $("#detailDisplay").show();
+        $("#detailEditable").hide();
+    }
+    HideData();
+
+    function SaveData() {
+        HideData();
+        alert("save data now! ");
+
+        if(!$("#edit_email").val())
+            $("#edit_email").attr("placeholder", s.Email);
+        if (!$("#edit_firstname").val())
+            $("#edit_firstname").attr("placeholder", s.FirstName);
+        if (!$("#edit_lastname").val())
+            $("#edit_lastname").attr("placeholder", s.LastName);
+        if (!$("#edit_sex").val())
+            $("#edit_sex").attr("placeholder", s.sex);
+        if (!$("#edit_age").val())
+            $("#edit_age").attr("placeholder", s.age);
+        if (!$("#edit_phone").val())
+            $("#edit_phone").attr("placeholder", s.Phone);
+        if (!$("#edit_birthdate").val())
+            $("#edit_birthdate").attr("placeholder", s.BirthDate);
+
+        var myUser = {
+            "Email": $("#edit_email").val(),
+            "FirstName": $("#edit_firstname").val(),
+            "LastName": $("#edit_lastname").val(),
+            "sex": $("#edit_sex").val(),
+            "age": $("#edit_age").val(),
+            "Phone": $("#edit_phone").val(),
+            "BirthDate": $("#edit_birthdate").val(),
+        };
+
+        var frmData = $("#formEdit").serialize();
+        $.post("UpdateUser_byJson", frmData);
+
+        return false; /* required to stop event propagation */
+
+//</script>
+//}
+}
+
+@Html.Partial("ShowUserPartial", Model)
+
+
+
