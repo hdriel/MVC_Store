@@ -22,48 +22,36 @@ You can see screenshots of the entire project here:
 ![image1](https://profile.fcdn.co.il/images2/0__05b3e0d055388d.jpg)
 
 * Add product 
-<br>
 ![image2](https://profile.fcdn.co.il/images2/0__05b3e0d242d9be.jpg)
 
-
 * All users
-<br>
 ![image3](https://profile.fcdn.co.il/images2/0__05b3e0d41c7d12.jpg)
 
 * Home as registerd
-<br>
 ![image4](https://profile.fcdn.co.il/images2/0__05b3e0d5a2b097.jpg)
 
 * Home as guest
-<br>
 ![image5](https://profile.fcdn.co.il/images2/0__05b3e0d808bedb.jpg)
 
 * Login
-<br>
 ![image6](https://profile.fcdn.co.il/images2/0__05b3e0d9370b6e.jpg)
 
 * Admin Management
-<br>
 ![image7](https://profile.fcdn.co.il/images2/0__05b3e0da44172d.jpg)
 
-* client Orders
-<br>
+* Client Orders
 ![image8](https://profile.fcdn.co.il/images2/0__05b3e0dcba483c.jpg)
 
 * Profile
-<br>
 ![image9](https://profile.fcdn.co.il/images2/0__05b3e0dde0927c.jpg)
 
 * Search product
-<br>
 ![image10](https://profile.fcdn.co.il/images2/0__05b3e0df3a6797.jpg)
 
 * Search product
-<br>
 ![image11](https://profile.fcdn.co.il/images2/0__05b3e0e064fe9c.jpg)
 
 * Update and delete product
-<br>
 ![image12](https://profile.fcdn.co.il/images2/0__05b3e0e28851a9.jpg)
 
 * Database tables
